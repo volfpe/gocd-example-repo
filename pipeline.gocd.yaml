@@ -1,0 +1,41 @@
+format_version: 10
+pipelines:
+  DockerPipeline:
+    group: defaultGroup
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-e5391b3:
+        git: https://github.com/volfpe/gocd-example-repo.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
+    stages:
+    - Test:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          test:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - build
+                - -f
+                - test1.Dockerfile
+                - --name
+                - test1
+                - .
+                command: docker
+                run_if: passed
+            - exec:
+                arguments:
+                - run
+                - test1
+                command: docker
+                run_if: passed
