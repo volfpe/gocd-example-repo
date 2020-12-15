@@ -28,7 +28,7 @@ pipelines:
                 - build
                 - -f
                 - test1.Dockerfile
-                - --name
+                - --tag
                 - test1
                 - .
                 command: docker
