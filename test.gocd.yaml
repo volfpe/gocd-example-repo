@@ -6,11 +6,6 @@ pipelines:
     lock_behavior: none
     display_order: -1
     materials:
-      git-e5391b3:
-        git: https://github.com/volfpe/gocd-example-repo.git
-        shallow_clone: false
-        auto_update: true
-        branch: master
       buildupstream:
         pipeline: BuildPipeline
         stage: Build
@@ -31,17 +26,7 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                - build
-                - -f
-                - test1.Dockerfile
-                - --tag
-                - test1
-                - .
-                command: docker
-                run_if: passed
-            - exec:
-                arguments:
-                - run
-                - test1
-                command: docker
+                - -c
+                - docker run exampleservertests:$GO_PIPELINE_LABEL
+                command: bash
                 run_if: passed
