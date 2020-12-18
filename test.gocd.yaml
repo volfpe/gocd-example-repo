@@ -6,6 +6,11 @@ pipelines:
     lock_behavior: none
     display_order: -1
     materials:
+      git-e5391b3:
+        git: https://github.com/volfpe/gocd-example-repo.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
       buildupstream:
         pipeline: BuildPipeline
         stage: Build
