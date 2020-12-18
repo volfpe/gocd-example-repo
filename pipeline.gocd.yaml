@@ -12,8 +12,8 @@ pipelines:
         auto_update: true
         branch: master
     environment_variables:
-      DOCKER_USER: {{SECRET:[default-secrets][docker-user]}}
-      DOCKER_PASS: {{SECRET:[default-secrets][docker-pass]}}
+      DOCKER_USER: "{{SECRET:[default-secrets][docker-user]}}"
+      DOCKER_PASS: "{{SECRET:[default-secrets][docker-pass]}}"
     stages:
     - Test:
         fetch_materials: true
