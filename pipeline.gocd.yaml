@@ -47,6 +47,7 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                  - "${DOCKER_USER}"
-                command: echo
+                  - -c
+                  - "echo $DOCKER_USER"
+                command: bash
                 run_if: passed
