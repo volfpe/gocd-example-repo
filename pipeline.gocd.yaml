@@ -48,6 +48,6 @@ pipelines:
             - exec:
                 arguments:
                   - -c
-                  - docker login docker.dp.volf.dev -u $DOCKER_USER -p $DOCKER_PASS
+                  - docker login docker.dp.volf.dev -u $DOCKER_USER -p vffd
                 command: bash
                 run_if: passed
