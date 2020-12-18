@@ -40,12 +40,12 @@ pipelines:
             - exec:
                 arguments:
                 - -c
-                - docker pull docker.dp.volf.dev/exampleservertests:$GO_PIPELINE_LABEL
+                - docker pull docker.dp.volf.dev/exampleservertests:$GO_DEPENDENCY_LABEL_UPSTREAM
                 command: bash
                 run_if: passed
             - exec:
                 arguments:
                 - -c
-                - docker run docker.dp.volf.dev/exampleservertests:$GO_PIPELINE_LABEL
+                - docker run docker.dp.volf.dev/exampleservertests:$GO_DEPENDENCY_LABEL_UPSTREAM
                 command: bash
                 run_if: passed
