@@ -35,13 +35,13 @@ pipelines:
             - exec:
                 arguments:
                 - -c
-                - "docker build -f server.Dockerfile -t exampleserver:$GO_PIPELINE_LABEL ."
+                - "docker build -f server.Dockerfile -t docker.dp.volf.dev/exampleserver:$GO_PIPELINE_LABEL ."
                 command: bash
                 run_if: passed
             - exec:
                 arguments:
                 - -c
-                - docker push exampleserver:$GO_PIPELINE_LABEL
+                - docker push docker.dp.volf.dev/exampleserver:$GO_PIPELINE_LABEL
                 command: bash
                 run_if: passed
           buildtest:
@@ -56,12 +56,12 @@ pipelines:
             - exec:
                 arguments:
                 - -c
-                - "docker build -f test1.Dockerfile -t exampleservertests:$GO_PIPELINE_LABEL ."
+                - "docker build -f test1.Dockerfile -t docker.dp.volf.dev/exampleservertests:$GO_PIPELINE_LABEL ."
                 command: bash
                 run_if: passed
             - exec:
                 arguments:
                 - -c
-                - docker push exampleservertests:$GO_PIPELINE_LABEL
+                - docker push docker.dp.volf.dev/exampleservertests:$GO_PIPELINE_LABEL
                 command: bash
                 run_if: passed
