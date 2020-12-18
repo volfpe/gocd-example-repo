@@ -25,6 +25,14 @@ pipelines:
         jobs:
           buildserver:
             timeout: 0
+            artifacts:
+            - external:
+                id: example-build
+                store_id: docker-store
+                configuration:
+                  options:
+                    Image: docker.dp.volf.dev/exampleserver
+                    Tag: ${GO_PIPELINE_LABEL}
             tasks:
             - exec:
                 arguments:
@@ -46,6 +54,14 @@ pipelines:
                 run_if: passed
           buildtest:
             timeout: 0
+            artifacts:
+            - external:
+                id: example-test
+                store_id: docker-store
+                configuration:
+                  options:
+                    Image: docker.dp.volf.dev/exampleservertests
+                    Tag: ${GO_PIPELINE_LABEL}
             tasks:
             - exec:
                 arguments:
