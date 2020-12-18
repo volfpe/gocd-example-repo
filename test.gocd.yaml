@@ -6,9 +6,12 @@ pipelines:
     lock_behavior: none
     display_order: -1
     materials:
-      buildupstream:
+      buildupstreambuild:
         pipeline: BuildPipeline
         stage: Build
+      buildupstreamtest:
+        pipeline: BuildPipeline
+        stage: Test
     environment_variables:
       DOCKER_USER: "{{SECRET:[default-secrets][docker-user]}}"
       DOCKER_PASS: "{{SECRET:[default-secrets][docker-pass]}}"
@@ -24,6 +27,13 @@ pipelines:
           test:
             timeout: 0
             tasks:
+            - fetch:
+                artifact_id: example-test
+                pipeline: BuildPipeline
+                stage: Test
+                job: test
+                artifact_origin: external
+                run_if: passed
             - exec:
                 arguments:
                 - -c
