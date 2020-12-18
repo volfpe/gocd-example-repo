@@ -27,6 +27,8 @@ pipelines:
             - exec:
                 arguments:
                 - -c
+                - docker login docker.dp.volf.dev -u $DOCKER_USER -p $DOCKER_PASS
+                - docker pull  exampleservertests:$GO_PIPELINE_LABEL
                 - docker run exampleservertests:$GO_PIPELINE_LABEL
                 command: bash
                 run_if: passed
