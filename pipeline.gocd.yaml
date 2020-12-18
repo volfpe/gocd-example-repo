@@ -48,6 +48,6 @@ pipelines:
             - exec:
                 arguments:
                   - -c
-                  - "echo $DOCKER_USER"
+                  - "echo user is $DOCKER_USER $GO_PIPELINE_COUNTER"
                 command: bash
                 run_if: passed
