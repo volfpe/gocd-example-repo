@@ -46,5 +46,7 @@ pipelines:
             timeout: 0
             tasks:
             - exec:
-                command: echo $DOCKER_USER
+                arguments:
+                  - "${DOCKER_USER}"
+                command: echo
                 run_if: passed
