@@ -11,6 +11,9 @@ pipelines:
         shallow_clone: false
         auto_update: true
         branch: master
+    environment_variables:
+      DOCKER_USER: {{SECRET:[default-secrets][docker-user]}}
+      DOCKER_PASS: {{SECRET:[default-secrets][docker-pass]}}
     stages:
     - Test:
         fetch_materials: true
@@ -38,4 +41,12 @@ pipelines:
                 - run
                 - test1
                 command: docker
+                run_if: passed
+          deploy:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - $DOCKER_USER
+                command: echo
                 run_if: passed
