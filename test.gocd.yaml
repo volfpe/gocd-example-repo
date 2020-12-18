@@ -30,8 +30,8 @@ pipelines:
             - fetch:
                 artifact_id: example-test
                 pipeline: BuildPipeline
-                stage: Test
-                job: test
+                stage: Build
+                job: buildtest
                 artifact_origin: external
                 run_if: passed
             - exec:
