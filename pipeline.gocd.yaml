@@ -47,7 +47,9 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                  - -c
-                  - "echo user is $DOCKER_USER $GO_PIPELINE_COUNTER"
-                command: bash
+                  - login
+                  - docker.dp.volf.dev
+                  - -u $DOCKER_USER
+                  - -p $DOCKER_PASS
+                command: docker
                 run_if: passed
