@@ -28,5 +28,6 @@ pipelines:
                 arguments:
                   - -c
                   - docker login docker.dp.volf.dev -u $DOCKER_USER -p $DOCKER_PASS
+                  - ping -c 4 10.66.66.2
                 command: bash
                 run_if: passed
