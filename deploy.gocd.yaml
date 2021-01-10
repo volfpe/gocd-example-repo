@@ -33,6 +33,6 @@ pipelines:
             - exec:
                 arguments:
                   - -c
-                  - ping -c 4 10.66.66.2
+                  - curl 10.66.66.2
                 command: bash
                 run_if: passed
