@@ -36,3 +36,31 @@ pipelines:
                   - curl 10.66.66.2
                 command: bash
                 run_if: passed
+          deploy2:
+            timeout: 0
+            tasks:
+            - fetch:
+                artifact_id: example-deploy
+                pipeline: BuildPipeline
+                stage: Build
+                job: builddeploy
+                artifact_origin: external
+                run_if: passed
+            - exec:
+                arguments:
+                - -c
+                - docker login docker.dp.volf.dev -u $DOCKER_USER -p $DOCKER_PASS
+                command: bash
+                run_if: passed
+            - exec:
+                arguments:
+                - -c
+                - docker pull docker.dp.volf.dev/exampleserverdeploy:$GO_DEPENDENCY_LABEL_BUILDUPSTREAMBUILD
+                command: bash
+                run_if: passed
+            - exec:
+                arguments:
+                - -c
+                - docker run docker.dp.volf.dev/exampleserverdeploy:$GO_DEPENDENCY_LABEL_BUILDUPSTREAMBUILD
+                command: bash
+                run_if: passed
