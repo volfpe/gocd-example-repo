@@ -9,6 +9,9 @@ pipelines:
       testupstream:
         pipeline: TestPipeline
         stage: Test
+      buildupstreambuild:
+        pipeline: BuildPipeline
+        stage: Build
     environment_variables:
       DOCKER_USER: "{{SECRET:[default-secrets][docker-user]}}"
       DOCKER_PASS: "{{SECRET:[default-secrets][docker-pass]}}"
