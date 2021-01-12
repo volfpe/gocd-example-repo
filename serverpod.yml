@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
   - name: server-container
-    image: docker.dp.volf.dev/exampleserverdeploy:20
+    image: docker.dp.volf.dev/exampleserverdeploy:23
     ports:
     - containerPort: 3000
