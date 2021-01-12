@@ -1,5 +1,5 @@
 #! /bin/bash
 
-kubectl config view
+kubectl get pods
 echo "HELLO"
 cat /root/.kube/config
