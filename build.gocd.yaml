@@ -48,7 +48,7 @@ pipelines:
             - exec:
                 arguments:
                 - -c
-                - "DOCKER_BUILDKIT=1 docker build --platform linux/arm64 -f server.Dockerfile -t docker.dp.volf.dev/exampleserver:$GO_PIPELINE_LABEL ."
+                - "docker buildx build --platform linux/arm64 -f server.Dockerfile -t docker.dp.volf.dev/exampleserver:$GO_PIPELINE_LABEL ."
                 command: bash
                 run_if: passed
             - exec:
