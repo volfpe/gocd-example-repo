@@ -7,6 +7,7 @@ ARG KUBECONF_CLIENT_KEY_DATA
 
 COPY deploy.sh .
 COPY kubeconfig.yml .
+COPY serverpod.yml .
 RUN apk add gettext
 RUN mkdir /root/.kube && envsubst < kubeconfig.yml > /root/.kube/config
 
