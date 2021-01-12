@@ -14,6 +14,11 @@ pipelines:
     environment_variables:
       DOCKER_USER: "{{SECRET:[default-secrets][docker-user]}}"
       DOCKER_PASS: "{{SECRET:[default-secrets][docker-pass]}}"
+      KUBECONF_CLUSTER_CERTIFICATE_AUTHORITY_DATE: "{{SECRET:[default-secrets][KUBECONF_CLUSTER_CERTIFICATE_AUTHORITY_DATE]}}"
+      KUBECONF_SERVER: "{{SECRET:[default-secrets][KUBECONF_SERVER]}}"
+      KUBECONF_USER_NAME: "{{SECRET:[default-secrets][KUBECONF_USER_NAME]}}"
+      KUBECONF_CLIENT_CERTIFICATE_DATA: "{{SECRET:[default-secrets][KUBECONF_CLIENT_CERTIFICATE_DATA]}}"
+      KUBECONF_CLIENT_KEY_DATA: "{{SECRET:[default-secrets][KUBECONF_CLIENT_KEY_DATA]}}"
     stages:
     - Build:
         fetch_materials: true
@@ -101,7 +106,7 @@ pipelines:
             - exec:
                 arguments:
                 - -c
-                - "docker build -f deploy.Dockerfile -t docker.dp.volf.dev/exampleserverdeploy:$GO_PIPELINE_LABEL ."
+                - "docker build -f deploy.Dockerfile --build-arg KUBECONF_CLUSTER_CERTIFICATE_AUTHORITY_DATE=$KUBECONF_CLUSTER_CERTIFICATE_AUTHORITY_DATE --build-arg KUBECONF_SERVER=$KUBECONF_SERVER --build-arg KUBECONF_USER_NAME=$KUBECONF_USER_NAME --build-arg KUBECONF_CLIENT_CERTIFICATE_DATA=$KUBECONF_CLIENT_CERTIFICATE_DATA --build-arg KUBECONF_CLIENT_KEY_DATA=$KUBECONF_CLIENT_KEY_DATA -t docker.dp.volf.dev/exampleserverdeploy:$GO_PIPELINE_LABEL ."
                 command: bash
                 run_if: passed
             - exec:
