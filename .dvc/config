@@ -1,0 +1,5 @@
+[core]
+    remote = miniomlo
+['remote "miniomlo"']
+    url = s3://mlo
+    endpointurl = https://minio.mlo.volf.dev
