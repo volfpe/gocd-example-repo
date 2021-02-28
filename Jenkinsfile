@@ -4,6 +4,7 @@ podTemplate {
             checkout scm
             sh 'echo pod build'
             sh 'ls -la'
+            sh './jenkins/build.sh'
         }
         stage('Test') {
             sh 'echo pod test'
