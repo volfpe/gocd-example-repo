@@ -11,7 +11,7 @@ podTemplate(containers: [
                       operator: "Equal"
                       value: "arm64"
                       effect: "NoSchedule"
-              """.stripIdent()
+              """.stripIndent()
     )
 ]) {
     node(POD_LABEL) {
