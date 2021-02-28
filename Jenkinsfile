@@ -4,7 +4,7 @@ kind: Pod
 spec:
   containers:
   - name: kaniko
-    image: gcr.io/kaniko-project/executor@sha256:4f42b973357063ef8cd1cd87922f586dcb1323f4ea153100987915b2e73af4f5
+    image: gcr.io/kaniko-project/executor@sha256:dc7af2416f4c4a8f7dfab7e2ee564a058a9b08d3308fe14c26f117bf2b006f49
     command:
     - /busybox/cat
   tolerations:
