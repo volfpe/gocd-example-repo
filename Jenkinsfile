@@ -5,12 +5,14 @@ podTemplate(containers: [
         ttyEnabled: true,
         command: "/busybox/cat",
         yaml: """\
-                containers:
-                    tolerations:
+                spec:
+                  tolerations:
                     - key: "arch"
                       operator: "Equal"
                       value: "arm64"
                       effect: "NoSchedule"
+                  nodeSelector:
+                    arch: arm64
               """.stripIndent()
     )
 ]) {
