@@ -1,21 +1,13 @@
-pipeline {
-    agent any
-
-    stages {
+podTemplate {
+    node(POD_LABEL) {
         stage('Build') {
-            steps {
-                echo 'Building..'
-            }
+            sh 'echo pod build'
         }
         stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
+            sh 'echo pod test'
         }
         stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+            sh 'echo pod deploy'
         }
     }
 }
