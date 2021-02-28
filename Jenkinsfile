@@ -15,8 +15,7 @@ spec:
   nodeSelector:
     arch: arm64
 """
-    )
-]) {
+) {
     node(POD_LABEL) {
         stage('Build') {
             container('kaniko') {
