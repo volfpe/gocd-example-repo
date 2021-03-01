@@ -16,7 +16,10 @@ pipeline {
         }
     }
     environment {
-        DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
+        DOCKER_HOST = credentials('DOCKER_HOST')
+        DOCKER_USER = credentials('DOCKER_USER')
+        DOCKER_PASS = credentials('DOCKER_PASS')
+        DOCKER_PROJECT = credentials('DOCKER_PROJECT')
     }
     stages {
         stage('Build') {
@@ -29,7 +32,6 @@ pipeline {
                 checkout scm
                 echo 'Building in jetson..'
                 sh 'ls -la'
-                sh 'echo aa$DOCKER_REPOSITORY'
                 sh 'uname -m'
                 sh 'pwd'
                 sh './jenkins/build.sh'
