@@ -18,6 +18,37 @@ pipeline {
                 sh 'uname -m'
             }
         }
-  
+        stage('Test') {
+            agent {
+                kubernetes {
+                    yaml: """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:debug
+    command:
+    - /busybox/cat
+  tolerations:
+  - key: "arch"
+    operator: "Equal"
+    value: "arm64"
+    effect: "NoSchedule"
+  nodeSelector:
+    arch: arm64
+"""
+                }
+            }
+            steps {
+                container('kaniko') {
+                    stage('Build in kaniko') {
+                        checkout scm
+                        sh 'echo pod build'
+                        sh 'ls -la'
+                    }
+                }
+            }
+        }
     }
 }
