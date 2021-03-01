@@ -7,7 +7,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                checkout scm
                 echo 'Building in jetson..'
+                sh 'ls-la'
                 sh 'uname -m'
             }
         }
