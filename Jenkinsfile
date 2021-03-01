@@ -55,7 +55,7 @@ pipeline {
             steps {
                 container('helm-kubectl') {
                     checkout scm
-                    sh 'in kubectl'
+                    sh 'kubectl config view'
                 }
 
             }
