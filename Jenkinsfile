@@ -1,14 +1,15 @@
 pipeline {
-    agent {
-        node {
-            label 'jetson'
-        }
-    }
+    agent none
     environment {
         DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
     }
     stages {
         stage('Build') {
+            agent {
+                node {
+                    label 'jetson'
+                }
+            }
             steps {
                 checkout scm
                 echo 'Building in jetson..'
@@ -17,15 +18,6 @@ pipeline {
                 sh 'uname -m'
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+  
     }
 }
