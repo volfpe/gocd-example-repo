@@ -22,15 +22,15 @@ pipeline {
             agent {
                 kubernetes {
                     yaml """\
-                        apiVersion: v1
-                        kind: Pod
-                        spec:
+                      apiVersion: v1
+                      kind: Pod
+                      spec:
                         containers:
                         - name: kaniko
-                            image: gcr.io/kaniko-project/executor:debug
-                            command:
-                            - /busybox/cat
-                        """.stripIndent()
+                          image: gcr.io/kaniko-project/executor:debug
+                          command:
+                          - /busybox/cat
+                      """.stripIndent()
                 }
             }
             steps {
