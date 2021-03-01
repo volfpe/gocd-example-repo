@@ -1,5 +1,20 @@
 pipeline {
-    agent none
+    agent {
+        kubernetes {
+        yaml """\
+            apiVersion: v1
+            kind: Pod
+            metadata:
+            spec:
+              containers:
+              - name: kaniko
+                image: gcr.io/kaniko-project/executor:debug
+                command:
+                - cat
+                tty: true
+            """.stripIndent()
+        }
+    }
     environment {
         DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
     }
@@ -18,31 +33,17 @@ pipeline {
                 sh 'uname -m'
             }
         }
-        node(POD_LABEL) {
-            stage('Test') {
-                agent {
-                    kubernetes {
-                    yaml """\
-                        apiVersion: v1
-                        kind: Pod
-                        spec:
-                          containers:
-                          - name: kaniko
-                            image: gcr.io/kaniko-project/executor:debug
-                            command:
-                            - cat
-                            tty: true
-                        """.stripIndent()
-                    }
-                }
-                steps {
+        stage('Test') {
+            steps {
+
                     container('kaniko') {
 
                         checkout scm
                         sh 'echo pod build'
                         sh 'ls -la'
+                        
                     }
-                }
+
             }
         }
     }
