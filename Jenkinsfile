@@ -41,7 +41,7 @@ pipeline {
             steps {
                 container('kaniko') {
                     checkout scm
-                    sh 'testing...'
+                    sh 'echo testing...'
                 }
 
             }
