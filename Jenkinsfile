@@ -21,7 +21,7 @@ pipeline {
         stage('Test') {
             agent {
                 kubernetes {
-                    yaml: """\
+                    yaml """\
                         apiVersion: v1
                         kind: Pod
                         spec:
@@ -30,13 +30,6 @@ pipeline {
                             image: gcr.io/kaniko-project/executor:debug
                             command:
                             - /busybox/cat
-                        tolerations:
-                        - key: "arch"
-                            operator: "Equal"
-                            value: "arm64"
-                            effect: "NoSchedule"
-                        nodeSelector:
-                            arch: arm64
                         """.stripIndent()
                 }
             }
