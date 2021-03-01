@@ -41,10 +41,7 @@ pipeline {
             steps {
                 container('kaniko') {
                     checkout scm
-                    sh 'echo pod build'
-                    sh 'ls -la'
-                    sh 'uname -m'
-                    sh 'pwd'
+                    sh 'testing...'
                 }
 
             }
