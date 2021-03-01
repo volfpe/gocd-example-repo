@@ -44,7 +44,7 @@ pipeline {
   }
             }
             steps {
-                container('kaniko') {
+                container('maven') {
 
                     checkout scm
                     sh 'echo pod build'
