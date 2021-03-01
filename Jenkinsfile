@@ -12,7 +12,6 @@ pipeline {
                 command:
                 - cat
                 tty: true
-              containers:
               - name: helm-kubectl
                 image: dtzar/helm-kubectl:3.4.2
                 command:
