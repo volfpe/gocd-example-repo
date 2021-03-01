@@ -55,13 +55,13 @@ pipeline {
             steps {
                 container('helm-kubectl') {
                     withCredentials([file(credentialsId: 'JETSON_KUBE_CONFIG', variable: 'config')]) {
+                        checkout scm
+                        sh 'kubectl config view'
                         sh 'pwd'
-                        sh "cp \$config configkk"
-                        sh 'ls -la'
+                        sh "cp \$config /root/.kube"
+                        sh 'kubectl config view'
+                        sh 'kubectl get pods'
                     }
-
-                    checkout scm
-                    sh 'kubectl config view'
                 }
 
             }
