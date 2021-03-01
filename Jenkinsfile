@@ -35,14 +35,16 @@ pipeline {
                     """.stripIndent()
                 }
             }
-            
-            steps {
-                container('kaniko') {
+            node(POD_LABEL) {
 
-                    checkout scm
-                    sh 'echo pod build'
-                    sh 'ls -la'
-                    
+                steps {
+                    container('kaniko') {
+
+                        checkout scm
+                        sh 'echo pod build'
+                        sh 'ls -la'
+                        
+                    }
                 }
             }
         }
