@@ -5,4 +5,4 @@ echo "second line"
 ls -la
 pwd
 echo $WORKSPACE
-/kaniko/executor --context $WORKSPACE --dockerfile $WORKSPACE/server.Dockerfile --no-push
+docker build -f $WORKSPACE/server.Dockerfile $WORKSPACE
