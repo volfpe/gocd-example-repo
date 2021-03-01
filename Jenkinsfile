@@ -22,22 +22,22 @@ pipeline {
             agent {
                 kubernetes {
                     yaml: """
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: kaniko
-    image: gcr.io/kaniko-project/executor:debug
-    command:
-    - /busybox/cat
-  tolerations:
-  - key: "arch"
-    operator: "Equal"
-    value: "arm64"
-    effect: "NoSchedule"
-  nodeSelector:
-    arch: arm64
-"""
+                        apiVersion: v1
+                        kind: Pod
+                        spec:
+                        containers:
+                        - name: kaniko
+                            image: gcr.io/kaniko-project/executor:debug
+                            command:
+                            - /busybox/cat
+                        tolerations:
+                        - key: "arch"
+                            operator: "Equal"
+                            value: "arm64"
+                            effect: "NoSchedule"
+                        nodeSelector:
+                            arch: arm64
+                        """.stripIndent()
                 }
             }
             steps {
