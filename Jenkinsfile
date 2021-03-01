@@ -31,18 +31,18 @@ pipeline {
                 sh 'ls -la'
                 sh 'echo aa$DOCKER_REPOSITORY'
                 sh 'uname -m'
+                sh 'pwd'
             }
         }
         stage('Test') {
             steps {
-
-                    container('kaniko') {
-
-                        checkout scm
-                        sh 'echo pod build'
-                        sh 'ls -la'
-                        
-                    }
+                container('kaniko') {
+                    checkout scm
+                    sh 'echo pod build'
+                    sh 'ls -la'
+                    sh 'uname -m'
+                    sh 'pwd'
+                }
 
             }
         }
