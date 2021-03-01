@@ -12,6 +12,12 @@ pipeline {
                 command:
                 - cat
                 tty: true
+              containers:
+              - name: helm-kubectl
+                image: dtzar/helm-kubectl:3.4.2
+                command:
+                - cat
+                tty: true
             """.stripIndent()
         }
     }
@@ -42,6 +48,15 @@ pipeline {
                 container('kaniko') {
                     checkout scm
                     sh 'echo testing...'
+                }
+
+            }
+        }
+        stage('Deploy') {
+            steps {
+                container('helm-kubectl') {
+                    checkout scm
+                    sh 'in kubectl'
                 }
 
             }
