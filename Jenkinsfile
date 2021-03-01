@@ -4,12 +4,16 @@ pipeline {
             label 'jetson'
         }
     }
+    environment {
+        DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
+    }
     stages {
         stage('Build') {
             steps {
                 checkout scm
                 echo 'Building in jetson..'
                 sh 'ls -la'
+                sh 'echo $DOCKER_REPOSITORY'
                 sh 'uname -m'
             }
         }
