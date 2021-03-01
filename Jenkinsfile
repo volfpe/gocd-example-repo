@@ -1,25 +1,17 @@
 podTemplate(yaml: """\
         apiVersion: v1
         kind: Pod
-        metadata:
-          labels:
-            some-label: some-label-value
         spec:
           containers:
-          - name: maven
-            image: maven:alpine
-            command:
-            - cat
-            tty: true
-          - name: busybox
-            image: busybox
+          - name: kaniko
+            image: gcr.io/kaniko-project/executor:debug
             command:
             - cat
             tty: true
         """.stripIndent()) {
     node(POD_LABEL) {
         stage('Build') {
-            container('maven') {
+            container('kaniko') {
                 stage('Build in kaniko') {
                     checkout scm
                     sh 'echo pod build'
