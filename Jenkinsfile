@@ -20,19 +20,28 @@ pipeline {
         }
         stage('Test') {
             agent {
-                kubernetes {
-                    yaml """\
-                        apiVersion: v1
-                        kind: Pod
-                        spec:
-                        containers:
-                        - name: kaniko
-                            image: gcr.io/kaniko-project/executor:debug
-                            command:
-                            - cat
-                            tty: true
-                        """.stripIndent()
-                }
+    kubernetes {
+      yaml """\
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          labels:
+            some-label: some-label-value
+        spec:
+          containers:
+          - name: maven
+            image: maven:alpine
+            command:
+            - cat
+            tty: true
+          - name: busybox
+            image: busybox
+            command:
+            - cat
+            tty: true
+        """.stripIndent()
+    }
+  }
             }
             steps {
                 container('kaniko') {
