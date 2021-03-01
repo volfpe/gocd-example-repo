@@ -32,6 +32,7 @@ pipeline {
                 sh 'echo aa$DOCKER_REPOSITORY'
                 sh 'uname -m'
                 sh 'pwd'
+                sh './jenkins/build.sh'
             }
         }
         stage('Test') {
