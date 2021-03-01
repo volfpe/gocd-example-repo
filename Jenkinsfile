@@ -13,7 +13,7 @@ pipeline {
                 checkout scm
                 echo 'Building in jetson..'
                 sh 'ls -la'
-                sh 'echo $DOCKER_REPOSITORY'
+                sh 'echo aa$DOCKER_REPOSITORY'
                 sh 'uname -m'
             }
         }
