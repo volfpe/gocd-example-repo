@@ -54,6 +54,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 container('helm-kubectl') {
+                    withCredentials([file(credentialsId: 'JETSON_KUBE_CONFIG', variable: 'config')]) {
+                        sh 'pwd'
+                        sh "cp \$config configkk"
+                        sh 'ls -la'
+                    }
+
                     checkout scm
                     sh 'kubectl config view'
                 }
