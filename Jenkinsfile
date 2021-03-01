@@ -16,10 +16,10 @@ pipeline {
         }
     }
     environment {
-        DOCKER_HOST = credentials('DOCKER_HOST')
-        DOCKER_USER = credentials('DOCKER_USER')
-        DOCKER_PASS = credentials('DOCKER_PASS')
-        DOCKER_PROJECT = credentials('DOCKER_PROJECT')
+        BUILD_DOCKER_HOST = credentials('DOCKER_HOST')
+        BUILD_DOCKER_USER = credentials('DOCKER_USER')
+        BUILD_DOCKER_PASS = credentials('DOCKER_PASS')
+        BUILD_DOCKER_PROJECT = credentials('DOCKER_PROJECT')
     }
     stages {
         stage('Build') {
