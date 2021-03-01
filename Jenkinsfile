@@ -5,7 +5,7 @@ pipeline {
         }
     }
     environment {
-        DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORYdfbf')
+        DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
     }
     stages {
         stage('Build') {
