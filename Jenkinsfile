@@ -21,7 +21,7 @@ pipeline {
         stage('Test') {
             agent {
                 kubernetes {
-                    yaml: """
+                    yaml: """\
                         apiVersion: v1
                         kind: Pod
                         spec:
