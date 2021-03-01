@@ -58,7 +58,8 @@ pipeline {
                         checkout scm
                         sh 'kubectl config view'
                         sh 'pwd'
-                        sh "cp \$config /root/.kube/config"
+                        sh 'mkdir /root/.kube'
+                        sh "cp \$config /root/.kube/"
                         sh 'kubectl config view'
                         sh 'kubectl get pods'
                     }
