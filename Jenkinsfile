@@ -35,9 +35,9 @@ pipeline {
                     """.stripIndent()
                 }
             }
-            node(POD_LABEL) {
+            steps {
+                node(POD_LABEL) {
 
-                steps {
                     container('kaniko') {
 
                         checkout scm
