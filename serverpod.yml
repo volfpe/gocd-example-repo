@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
   - name: server-container
-    image: docker.dp.volf.dev/exampleserver:28
+    image: harbor.mlo.volf.dev/library/server@sha256:ace32963530a4319aa4b6ab2be3878dff14b0fe4f0b487584560f5a96a04b6ea
     ports:
     - containerPort: 3000

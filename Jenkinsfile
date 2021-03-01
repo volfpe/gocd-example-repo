@@ -61,6 +61,7 @@ pipeline {
                         sh 'mkdir /root/.kube'
                         sh "cp \$config /root/.kube/"
                         sh 'kubectl config view'
+                        sh './jenkins/deploy.sh'
                         sh 'kubectl get pods'
                     }
                 }
