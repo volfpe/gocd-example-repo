@@ -42,11 +42,11 @@ spec:
             }
             steps {
                 container('kaniko') {
-                    stage('Build in kaniko') {
-                        checkout scm
-                        sh 'echo pod build'
-                        sh 'ls -la'
-                    }
+
+                    checkout scm
+                    sh 'echo pod build'
+                    sh 'ls -la'
+                    
                 }
             }
         }
