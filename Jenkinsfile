@@ -18,32 +18,29 @@ pipeline {
                 sh 'uname -m'
             }
         }
-        stage('Test') {
-            agent {
-                kubernetes {
-                yaml """\
-                    apiVersion: v1
-                    kind: Pod
-                    metadata:
-                    spec:
-                    containers:
-                    - name: kaniko
-                      image: gcr.io/kaniko-project/executor:debug
-                      command:
-                      - cat
-                      tty: true
-                    """.stripIndent()
+        node(POD_LABEL) {
+            stage('Test') {
+                agent {
+                    kubernetes {
+                    yaml """\
+                        apiVersion: v1
+                        kind: Pod
+                        spec:
+                          containers:
+                          - name: kaniko
+                            image: gcr.io/kaniko-project/executor:debug
+                            command:
+                            - cat
+                            tty: true
+                        """.stripIndent()
+                    }
                 }
-            }
-            steps {
-                node(POD_LABEL) {
-
+                steps {
                     container('kaniko') {
 
                         checkout scm
                         sh 'echo pod build'
                         sh 'ls -la'
-                        
                     }
                 }
             }
