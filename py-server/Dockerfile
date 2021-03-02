@@ -6,7 +6,7 @@ COPY . .
 ENV FLASK_APP=server.py
 
 RUN apt-get update
-RUN apt-get install -y libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran
+RUN apt-get install -y libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran python3-h5py
 RUN apt-get install -y python3-pip
 
 RUN pip3 install -U pip testresources setuptools==49.6.0
