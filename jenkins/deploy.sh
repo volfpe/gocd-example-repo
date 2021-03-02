@@ -1,4 +1,4 @@
 #! /bin/bash
 
 kubectl get pods
-kubectl apply -f serverpod.yml
+helm install --upgrade --set image.tag=$BUILD_ID jetson-server ./helm/jetson-server
