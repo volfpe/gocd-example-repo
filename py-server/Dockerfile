@@ -1,5 +1,7 @@
 FROM nvcr.io/nvidia/l4t-base:r32.5.0
 
+RUN python --version
+
 WORKDIR /server
 
 COPY . .
