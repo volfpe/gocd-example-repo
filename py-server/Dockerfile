@@ -1,5 +1,8 @@
 FROM nvcr.io/nvidia/l4t-tensorflow:r32.5.0-tf2.3-py3
 
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+
 
 WORKDIR /server
 
