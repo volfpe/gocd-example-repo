@@ -25,6 +25,12 @@ pipeline {
         BUILD_DOCKER_USER = credentials('DOCKER_USER')
         BUILD_DOCKER_PASS = credentials('DOCKER_PASS')
         BUILD_DOCKER_PROJECT = credentials('DOCKER_PROJECT')
+
+        MLFLOW_TRACKING_USERNAME = credentials('MLFLOW_TRACKING_USERNAME')
+        MLFLOW_TRACKING_PASSWORD = credentials('MLFLOW_TRACKING_PASSWORD')
+        MLFLOW_S3_ENDPOINT_URL = credentials('MLFLOW_S3_ENDPOINT_URL')
+        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
     }
     stages {
         stage('Build') {
