@@ -57,7 +57,7 @@ pipeline {
             }
             steps {
                 checkout scm
-                echo '$MODEL_VERSION'
+                sh 'echo $MODEL_VERSION'
                 // echo 'Building in jetson..'
                 // sh 'ls -la'
                 // sh 'uname -m'
