@@ -1,3 +1,3 @@
 #! /bin/sh
 
-MODEL_VERSION = "TEST"
+MODEL_VERSION="TEST"
