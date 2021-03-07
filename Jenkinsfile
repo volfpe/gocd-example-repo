@@ -74,13 +74,9 @@ pipeline {
                 container('helm-kubectl') {
                     withCredentials([file(credentialsId: 'JETSON_KUBE_CONFIG', variable: 'config')]) {
                         checkout scm
-                        sh 'kubectl config view'
-                        sh 'pwd'
                         sh 'mkdir /root/.kube'
                         sh "cp \$config /root/.kube/"
-                        sh 'kubectl config view'
                         sh './jenkins/deploy.sh'
-                        sh 'kubectl get pods'
                     }
                 }
 
