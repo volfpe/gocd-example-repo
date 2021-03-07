@@ -8,10 +8,7 @@ mlflow.set_experiment("/nlg2")
 
 def main():
     client = MlflowClient()
-    for rm in client.list_registered_models():
-        for version in dict(rm)['latest_versions']:
-            if dict(version)['current_stage'] == 'Production':
-                client.download_artifacts(dict(version)['run_id'], "model", '.')
+    client.download_artifacts(os.environ.get('MODEL_VERSION'), "model", '.')
 
 if __name__ == "__main__":
     main()

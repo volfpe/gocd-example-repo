@@ -19,6 +19,7 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
+ARG MODEL_VERSION
 RUN python3 getmodel.py
 
 CMD flask run --host=0.0.0.0 --port=3000

@@ -59,12 +59,7 @@ pipeline {
             steps {
                 checkout scm
                 unstash("model_version")
-                sh 'cat model_version.txt'
-                // echo 'Building in jetson..'
-                // sh 'ls -la'
-                // sh 'uname -m'
-                // sh 'pwd'
-                // sh './jenkins/build.sh'
+                sh './jenkins/build.sh'
             }
         }
         stage('Test') {
@@ -76,22 +71,22 @@ pipeline {
 
             }
         }
-        // stage('Deploy') {
-        //     steps {
-        //         container('helm-kubectl') {
-        //             withCredentials([file(credentialsId: 'JETSON_KUBE_CONFIG', variable: 'config')]) {
-        //                 checkout scm
-        //                 sh 'kubectl config view'
-        //                 sh 'pwd'
-        //                 sh 'mkdir /root/.kube'
-        //                 sh "cp \$config /root/.kube/"
-        //                 sh 'kubectl config view'
-        //                 sh './jenkins/deploy.sh'
-        //                 sh 'kubectl get pods'
-        //             }
-        //         }
+        stage('Deploy') {
+            steps {
+                container('helm-kubectl') {
+                    withCredentials([file(credentialsId: 'JETSON_KUBE_CONFIG', variable: 'config')]) {
+                        checkout scm
+                        sh 'kubectl config view'
+                        sh 'pwd'
+                        sh 'mkdir /root/.kube'
+                        sh "cp \$config /root/.kube/"
+                        sh 'kubectl config view'
+                        sh './jenkins/deploy.sh'
+                        sh 'kubectl get pods'
+                    }
+                }
 
-        //     }
-        // }
+            }
+        }
     }
 }
