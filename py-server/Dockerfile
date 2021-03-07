@@ -9,13 +9,15 @@ ARG AWS_SECRET_ACCESS_KEY
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
+ENV FLASK_APP=server.py
+
 
 WORKDIR /server
 
-COPY . .
-ENV FLASK_APP=server.py
-
+COPY requirements.txt .
 RUN pip3 install -r requirements.txt
+
+COPY . .
 
 RUN python3 getmodel.py
 

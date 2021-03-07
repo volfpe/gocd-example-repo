@@ -7,6 +7,11 @@ pipeline {
             metadata:
             spec:
               containers:
+              - name: python
+                image: python:3.8-buster
+                command:
+                - cat
+                tty: true
               - name: kaniko
                 image: gcr.io/kaniko-project/executor:debug
                 command:
@@ -31,8 +36,19 @@ pipeline {
         MLFLOW_S3_ENDPOINT_URL = credentials('MLFLOW_S3_ENDPOINT_URL')
         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+
+        MODEL_VERSION = ''
     }
     stages {
+        stage('Model version') {
+            steps {
+                container('python') {
+                    checkout scm
+                    env.MODEL_VERSION = 'TEST'
+                }
+
+            }
+        }
         stage('Build') {
             agent {
                 node {
@@ -41,11 +57,12 @@ pipeline {
             }
             steps {
                 checkout scm
-                echo 'Building in jetson..'
-                sh 'ls -la'
-                sh 'uname -m'
-                sh 'pwd'
-                sh './jenkins/build.sh'
+                echo '${env.MODEL_VERSION}'
+                // echo 'Building in jetson..'
+                // sh 'ls -la'
+                // sh 'uname -m'
+                // sh 'pwd'
+                // sh './jenkins/build.sh'
             }
         }
         stage('Test') {
