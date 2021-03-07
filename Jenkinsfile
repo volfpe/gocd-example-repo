@@ -44,7 +44,7 @@ pipeline {
             steps {
                 container('python') {
                     checkout scm
-                    env.MODEL_VERSION = sh 'echo "TEST"'
+                    sh './jenkins/model-version.sh'
                 }
 
             }
