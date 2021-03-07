@@ -45,7 +45,7 @@ pipeline {
                 container('python') {
                     checkout scm
                     sh './jenkins/model-version.sh'
-                    archiveArtifacts artifacts: 'model_version.txt', fingerprint: true
+                    stash(name: "model_version", includes: 'model_version.txt')
                 }
 
             }
@@ -58,7 +58,8 @@ pipeline {
             }
             steps {
                 checkout scm
-                sh 'echo $MODEL_VERSION'
+                unstash("model_version")
+                sh 'cat model_version.txt'
                 // echo 'Building in jetson..'
                 // sh 'ls -la'
                 // sh 'uname -m'
