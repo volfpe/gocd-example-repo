@@ -45,6 +45,7 @@ pipeline {
                 container('python') {
                     checkout scm
                     sh './jenkins/model-version.sh'
+                    archiveArtifacts artifacts: 'model_version.txt', fingerprint: true
                 }
 
             }

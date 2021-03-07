@@ -1,3 +1,3 @@
 #! /bin/sh
 
-MODEL_VERSION="TEST"
+echo "TEST10" > model_version.txt
