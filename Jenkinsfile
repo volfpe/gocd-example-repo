@@ -36,11 +36,9 @@ pipeline {
         MLFLOW_S3_ENDPOINT_URL = credentials('MLFLOW_S3_ENDPOINT_URL')
         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-
-        MODEL_VERSION = ''
     }
     stages {
-        stage('Model version') {
+        stage('Get Model Version') {
             steps {
                 container('python') {
                     checkout scm
