@@ -7,6 +7,7 @@ mlflow.set_tracking_uri(remote_server_uri)
 mlflow.set_experiment("/nlg2")
 
 def main():
+    print(os.environ)
     print('MODEL VERSION: ' + os.environ.get('MODEL_VERSION'))
     client = MlflowClient()
     client.download_artifacts(os.environ.get('MODEL_VERSION'), "model", '.')
