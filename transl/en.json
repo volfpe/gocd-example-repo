@@ -1,0 +1,17 @@
+{
+    "skip": "Přeskočit",
+    "continue_": "Pokračovat",
+    "screens": {
+      "s0": {
+        "title": "Konec nevhodným dárkům",
+        "subtitle": "Zapište si své nápady. Inspirujte se."
+      },
+      "s1": {
+        "title": "A čím pomůže Tomikup Vám?"
+      },
+      "s2": {
+        "title": "Díky našim notifikacím",
+        "subtitle": "nezapomenete na žádné\nnarozeniny a důležitý nákup."
+      }
+    }
+  }
